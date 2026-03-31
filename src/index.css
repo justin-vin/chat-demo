@@ -29,7 +29,7 @@
 
 html, body, #root {
   height: 100%;
-  background: #F0EDEA;
+  background: #E8E4DF;
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -51,14 +51,8 @@ html, body, #root {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  @keyframes slide-up {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 }
 
-/* Scrollbar — minimal */
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -68,9 +62,6 @@ html, body, #root {
 ::-webkit-scrollbar-thumb {
   background: #D6D0C8;
   border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #B8B0A8;
 }
 
 ::selection {
