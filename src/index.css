@@ -17,7 +17,7 @@
   --color-user-bubble: #1a1a1a;
   --color-user-text: #FAF8F5;
 
-  --font-sans: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
   --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
 }
 
@@ -29,7 +29,7 @@
 
 html, body, #root {
   height: 100%;
-  background: var(--color-bg);
+  background: #F0EDEA;
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
