@@ -12,7 +12,7 @@ export const readRenderer: ToolRenderer = {
 
   renderCall(args) {
     return (
-      <span className="text-text-secondary text-[13px] font-mono truncate">
+      <span className="text-text-dim text-[13px] font-mono truncate">
         {shortPath(args.path || args.file_path || 'file')}
       </span>
     )
@@ -22,7 +22,7 @@ export const readRenderer: ToolRenderer = {
     const content = typeof result === 'string' ? result : JSON.stringify(result, null, 2)
     const lines = content.split('\n').slice(0, 20)
     return (
-      <div className="bg-bg rounded-lg p-3 mt-1 border border-border overflow-hidden">
+      <div className="bg-[#FAFAF8] rounded-xl p-3 mt-1.5 border border-border overflow-hidden">
         <pre className="text-[12px] font-mono text-text-secondary leading-relaxed whitespace-pre-wrap break-all">
           {lines.join('\n')}
           {content.split('\n').length > 20 && (

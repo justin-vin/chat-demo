@@ -1,7 +1,7 @@
 import type { ToolRenderer } from './types'
 
 export const genericRenderer: ToolRenderer = {
-  icon: '⚙️',
+  icon: '○',
   label: 'Tool',
 
   renderCall(args) {
@@ -9,7 +9,7 @@ export const genericRenderer: ToolRenderer = {
       .map(([k, v]) => `${k}: ${String(v).slice(0, 30)}`)
       .join(', ')
     return (
-      <span className="text-text-secondary text-[13px] truncate">
+      <span className="text-text-dim text-[13px] truncate">
         {summary || '…'}
       </span>
     )
@@ -18,7 +18,7 @@ export const genericRenderer: ToolRenderer = {
   renderResult(result) {
     const content = typeof result === 'string' ? result : JSON.stringify(result, null, 2)
     return (
-      <div className="bg-bg rounded-lg p-3 mt-1 border border-border">
+      <div className="bg-surface rounded-xl p-3 mt-1.5 border border-border">
         <pre className="text-[12px] font-mono text-text-secondary leading-relaxed whitespace-pre-wrap break-all">
           {content.slice(0, 500)}
         </pre>

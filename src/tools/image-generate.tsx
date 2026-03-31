@@ -1,15 +1,15 @@
 import type { ToolRenderer } from './types'
 
 export const imageGenerateRenderer: ToolRenderer = {
-  icon: '🎨',
-  label: 'Generate Image',
+  icon: '✦',
+  label: 'Generate',
 
   renderCall(args) {
     const prompt = args.prompt || ''
-    const display = prompt.length > 50 ? prompt.slice(0, 47) + '…' : prompt
+    const display = prompt.length > 45 ? prompt.slice(0, 42) + '…' : prompt
     return (
-      <span className="text-text-secondary text-[13px] truncate">
-        "{display}"
+      <span className="text-text-dim text-[13px] truncate italic">
+        {display}
       </span>
     )
   },
@@ -17,13 +17,13 @@ export const imageGenerateRenderer: ToolRenderer = {
   renderResult(result) {
     const url = typeof result === 'string' ? result : result?.url
     return (
-      <div className="mt-1 rounded-xl overflow-hidden border border-border bg-surface">
+      <div className="mt-1.5 rounded-2xl overflow-hidden border border-border">
         {url ? (
-          <img src={url} alt="Generated" className="w-full max-w-[320px] rounded-xl" />
+          <img src={url} alt="Generated" className="w-full max-w-[280px] rounded-2xl" />
         ) : (
-          <div className="w-full max-w-[320px] aspect-square bg-surface-bright flex items-center justify-center">
+          <div className="w-full max-w-[280px] aspect-square bg-surface-bright flex items-center justify-center">
             <div className="text-center">
-              <div className="text-3xl mb-2">🎨</div>
+              <div className="text-2xl mb-2 opacity-30">✦</div>
               <div className="text-[12px] text-text-dim">Image generated</div>
             </div>
           </div>

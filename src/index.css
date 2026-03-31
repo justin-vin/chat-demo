@@ -1,28 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0a;
-  --color-surface: #141414;
-  --color-surface-hover: #1a1a1a;
-  --color-surface-bright: #1e1e1e;
-  --color-accent: #c8ff00;
-  --color-accent-dim: #c8ff0020;
-  --color-accent-mid: #c8ff0040;
-  --color-text: #e8e8e8;
-  --color-text-secondary: #888888;
-  --color-text-dim: #555555;
-  --color-border: #222222;
-  --color-border-bright: #333333;
-  --color-error: #ff4444;
-  --color-success: #22c55e;
+  --color-bg: #FAF8F5;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F5F3F0;
+  --color-surface-bright: #F0EDE8;
+  --color-accent: #1a1a1a;
+  --color-accent-soft: #E8E5E0;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #6b6560;
+  --color-text-dim: #a8a29e;
+  --color-border: #E8E5E0;
+  --color-border-bright: #D6D0C8;
+  --color-error: #DC3545;
+  --color-success: #34A853;
+  --color-user-bubble: #1a1a1a;
+  --color-user-text: #FAF8F5;
 
-  --font-sans: 'Inter', 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+  --font-sans: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 * {
@@ -47,12 +43,12 @@ html, body, #root {
   }
 
   @keyframes pulse-glow {
-    0%, 100% { opacity: 0.6; }
+    0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
   }
 
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(4px); }
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -60,24 +56,23 @@ html, body, #root {
     from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  @keyframes expand {
-    from { opacity: 0; max-height: 0; }
-    to { opacity: 1; max-height: 500px; }
-  }
 }
 
-/* Scrollbar */
+/* Scrollbar — minimal */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
+  background: #D6D0C8;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: #B8B0A8;
+}
+
+::selection {
+  background: rgba(26, 26, 26, 0.08);
 }

@@ -7,12 +7,12 @@ function shortPath(path: string, max = 45): string {
 }
 
 export const editRenderer: ToolRenderer = {
-  icon: '✏️',
+  icon: '✎',
   label: 'Edit',
 
   renderCall(args) {
     return (
-      <span className="text-text-secondary text-[13px] font-mono truncate">
+      <span className="text-text-dim text-[13px] font-mono truncate">
         {shortPath(args.path || args.file_path || 'file')}
       </span>
     )
@@ -22,21 +22,21 @@ export const editRenderer: ToolRenderer = {
     const oldText = result?.oldText || result?.old_string || ''
     const newText = result?.newText || result?.new_string || ''
     return (
-      <div className="bg-bg rounded-lg mt-1 border border-border overflow-hidden font-mono text-[12px]">
+      <div className="bg-surface rounded-xl mt-1.5 border border-border overflow-hidden font-mono text-[12px]">
         {oldText && (
-          <div className="px-3 py-1.5 bg-error/5 border-b border-border">
-            <span className="text-error/70">- </span>
-            <span className="text-error/50">{oldText.slice(0, 80)}</span>
+          <div className="px-3 py-2 bg-[#FEF2F2] border-b border-border">
+            <span className="text-[#B91C1C] opacity-60">− </span>
+            <span className="text-[#B91C1C] opacity-50">{oldText.slice(0, 80)}</span>
           </div>
         )}
         {newText && (
-          <div className="px-3 py-1.5 bg-success/5">
-            <span className="text-success/70">+ </span>
-            <span className="text-success/50">{newText.slice(0, 80)}</span>
+          <div className="px-3 py-2 bg-[#F0FDF4]">
+            <span className="text-[#166534] opacity-60">+ </span>
+            <span className="text-[#166534] opacity-50">{newText.slice(0, 80)}</span>
           </div>
         )}
         {!oldText && !newText && (
-          <div className="px-3 py-1.5 text-text-dim">File updated</div>
+          <div className="px-3 py-2 text-text-dim">File updated</div>
         )}
       </div>
     )

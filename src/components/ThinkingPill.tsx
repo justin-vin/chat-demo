@@ -29,20 +29,20 @@ export function ThinkingPill({ isActive, durationMs, thinkingSteps, onToggleTrac
       <button
         onClick={onToggleTrace}
         className={`
-          inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px]
-          font-mono transition-all duration-200 cursor-pointer border
+          inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px]
+          font-mono transition-all duration-300 cursor-pointer
           ${isActive
-            ? 'bg-accent/10 border-accent/20 text-accent/80'
-            : 'bg-surface-bright/60 border-border text-text-secondary hover:bg-surface-bright hover:border-border-bright'
+            ? 'bg-accent/[0.06] text-text-secondary'
+            : 'bg-transparent text-text-dim hover:bg-accent/[0.04] hover:text-text-secondary'
           }
         `}
       >
         {isActive && (
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-[pulse-glow_1.5s_ease-in-out_infinite]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-text-dim animate-[pulse-glow_1.5s_ease-in-out_infinite]" />
         )}
-        <span>{elapsed}s</span>
+        <span className="tabular-nums">{elapsed}s</span>
         <svg
-          className={`w-3 h-3 transition-transform duration-200 ${traceOpen ? 'rotate-180' : ''}`}
+          className={`w-3 h-3 transition-transform duration-300 ${traceOpen ? 'rotate-180' : ''}`}
           fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -50,11 +50,11 @@ export function ThinkingPill({ isActive, durationMs, thinkingSteps, onToggleTrac
       </button>
 
       {traceOpen && thinkingSteps.length > 0 && (
-        <div className="mt-2 ml-1 pl-3 border-l-2 border-accent/20 space-y-1.5 animate-[fade-in_0.2s_ease-out]">
+        <div className="mt-2 ml-1 pl-3 border-l border-border space-y-2 animate-[fade-in_0.2s_ease-out]">
           {thinkingSteps.map((step, i) => (
-            <div key={i} className="text-[12px] text-text-dim leading-relaxed">
+            <p key={i} className="text-[13px] text-text-dim leading-relaxed italic">
               {step.text}
-            </div>
+            </p>
           ))}
         </div>
       )}
