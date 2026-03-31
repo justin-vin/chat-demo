@@ -12,7 +12,7 @@ export const editRenderer: ToolRenderer = {
 
   renderCall(args) {
     return (
-      <span className="text-text-dim text-[13px] font-mono truncate">
+      <span className="text-[12.5px] font-mono truncate" style={{ color: 'var(--color-text-dim)' }}>
         {shortPath(args.path || args.file_path || 'file')}
       </span>
     )
@@ -22,21 +22,39 @@ export const editRenderer: ToolRenderer = {
     const oldText = result?.oldText || result?.old_string || ''
     const newText = result?.newText || result?.new_string || ''
     return (
-      <div className="bg-surface rounded-xl mt-1.5 border border-border overflow-hidden font-mono text-[12px]">
+      <div
+        className="mt-1.5 overflow-hidden font-mono text-[11.5px]"
+        style={{
+          borderRadius: '12px',
+          border: '0.5px solid var(--color-border)',
+          background: 'var(--color-surface)',
+        }}
+      >
         {oldText && (
-          <div className="px-3 py-2 bg-[#FEF2F2] border-b border-border">
-            <span className="text-[#B91C1C] opacity-60">− </span>
-            <span className="text-[#B91C1C] opacity-50">{oldText.slice(0, 80)}</span>
+          <div
+            className="px-3 py-2"
+            style={{
+              background: 'rgba(220,38,38,0.05)',
+              borderBottom: '0.5px solid rgba(220,38,38,0.12)',
+            }}
+          >
+            <span style={{ color: '#DC2626', opacity: 0.7 }}>{'− '}</span>
+            <span style={{ color: '#DC2626', opacity: 0.55 }}>{oldText.slice(0, 80)}</span>
           </div>
         )}
         {newText && (
-          <div className="px-3 py-2 bg-[#F0FDF4]">
-            <span className="text-[#166534] opacity-60">+ </span>
-            <span className="text-[#166534] opacity-50">{newText.slice(0, 80)}</span>
+          <div
+            className="px-3 py-2"
+            style={{ background: 'rgba(22,163,74,0.05)' }}
+          >
+            <span style={{ color: '#16A34A', opacity: 0.75 }}>{'+ '}</span>
+            <span style={{ color: '#16A34A', opacity: 0.6 }}>{newText.slice(0, 80)}</span>
           </div>
         )}
         {!oldText && !newText && (
-          <div className="px-3 py-2 text-text-dim">File updated</div>
+          <div className="px-3 py-2" style={{ color: 'var(--color-text-dim)' }}>
+            File updated
+          </div>
         )}
       </div>
     )

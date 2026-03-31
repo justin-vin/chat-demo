@@ -6,9 +6,9 @@ export const execRenderer: ToolRenderer = {
 
   renderCall(args) {
     const cmd = args.command || ''
-    const display = cmd.length > 55 ? cmd.slice(0, 52) + '…' : cmd
+    const display = cmd.length > 52 ? cmd.slice(0, 49) + '…' : cmd
     return (
-      <span className="text-text-dim text-[13px] font-mono truncate">
+      <span className="text-[12.5px] font-mono truncate" style={{ color: 'var(--color-text-dim)' }}>
         {display}
       </span>
     )
@@ -16,16 +16,31 @@ export const execRenderer: ToolRenderer = {
 
   renderResult(result) {
     const output = typeof result === 'string' ? result : JSON.stringify(result, null, 2)
-    const lines = output.split('\n').slice(0, 15)
+    const lines = output.split('\n').slice(0, 14)
     return (
-      <div className="bg-[#1a1a1a] rounded-xl mt-1.5 overflow-hidden">
-        <div className="flex items-center gap-1.5 px-3 py-2">
-          <div className="w-[9px] h-[9px] rounded-full bg-[#ff5f57]" />
-          <div className="w-[9px] h-[9px] rounded-full bg-[#febc2e]" />
-          <div className="w-[9px] h-[9px] rounded-full bg-[#28c840]" />
+      <div
+        className="mt-1.5 overflow-hidden"
+        style={{ background: '#141210', borderRadius: '14px' }}
+      >
+        {/* Title bar */}
+        <div className="flex items-center gap-1.5 px-3 pt-2.5 pb-1.5">
+          <div className="w-[9px] h-[9px] rounded-full" style={{ background: '#FF5F57' }} />
+          <div className="w-[9px] h-[9px] rounded-full" style={{ background: '#FEBC2E' }} />
+          <div className="w-[9px] h-[9px] rounded-full" style={{ background: '#28C840' }} />
+          <span
+            className="text-[10px] ml-auto"
+            style={{ color: 'rgba(255,255,255,0.18)', fontFamily: 'var(--font-mono)' }}
+          >
+            bash
+          </span>
         </div>
-        <pre className="text-[12px] font-mono text-[#a8a29e] leading-relaxed px-3 pb-3 whitespace-pre-wrap break-all">
-          {lines.join('\n')}
+        <pre
+          className="text-[11.5px] leading-relaxed whitespace-pre-wrap break-all pb-3 px-3"
+          style={{ color: '#9E9891', fontFamily: 'var(--font-mono)' }}
+        >
+          <span style={{ color: '#5A9B5A', opacity: 0.9 }}>{'$ '}</span>
+          {lines[0] || ''}
+          {lines.length > 1 ? '\n' + lines.slice(1).join('\n') : ''}
         </pre>
       </div>
     )

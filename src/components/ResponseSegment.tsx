@@ -18,8 +18,8 @@ export function ResponseSegmentView({ segment, isActive, isStreaming }: Response
   const hasTrace = hasThinking || hasTools
 
   return (
-    <div className="space-y-1">
-      {/* Thinking pill — collapsed by default, expands to show trace + tools */}
+    <div className="space-y-2">
+      {/* Thinking pill — collapsed by default */}
       {hasTrace && (
         <div>
           <ThinkingPill
@@ -31,9 +31,21 @@ export function ResponseSegmentView({ segment, isActive, isStreaming }: Response
 
           {/* Expanded trace: thinking steps + tool calls */}
           {traceOpen && (
-            <div className="mt-2 ml-1 pl-3 border-l border-border space-y-1 animate-[fade-in_0.2s_ease-out]">
+            <div
+              className="mt-2 space-y-1"
+              style={{
+                marginLeft: '6px',
+                paddingLeft: '12px',
+                borderLeft: '1.5px solid rgba(28,25,23,0.08)',
+                animation: 'fade-scale-in 0.2s ease-out both',
+              }}
+            >
               {segment.thinking.map((step, i) => (
-                <p key={`t-${i}`} className="text-[13px] text-text-dim leading-relaxed italic">
+                <p
+                  key={`t-${i}`}
+                  className="text-[12.5px] leading-[1.6] italic"
+                  style={{ color: '#B5AFA9' }}
+                >
                   {step.text}
                 </p>
               ))}
@@ -47,7 +59,10 @@ export function ResponseSegmentView({ segment, isActive, isStreaming }: Response
 
       {/* Response text */}
       {hasText && (
-        <div className="text-[15px] text-text leading-[1.65]">
+        <div
+          className="text-[15px] leading-[1.68] tracking-[-0.008em]"
+          style={{ color: 'var(--color-text)' }}
+        >
           <StreamingText
             text={segment.text}
             isStreaming={isStreaming}

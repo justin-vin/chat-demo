@@ -12,7 +12,7 @@ export const readRenderer: ToolRenderer = {
 
   renderCall(args) {
     return (
-      <span className="text-text-dim text-[13px] font-mono truncate">
+      <span className="text-[12.5px] font-mono truncate" style={{ color: 'var(--color-text-dim)' }}>
         {shortPath(args.path || args.file_path || 'file')}
       </span>
     )
@@ -20,13 +20,26 @@ export const readRenderer: ToolRenderer = {
 
   renderResult(result) {
     const content = typeof result === 'string' ? result : JSON.stringify(result, null, 2)
-    const lines = content.split('\n').slice(0, 20)
+    const allLines = content.split('\n')
+    const lines = allLines.slice(0, 20)
     return (
-      <div className="bg-[#FAFAF8] rounded-xl p-3 mt-1.5 border border-border overflow-hidden">
-        <pre className="text-[12px] font-mono text-text-secondary leading-relaxed whitespace-pre-wrap break-all">
+      <div
+        className="mt-1.5 overflow-hidden"
+        style={{
+          borderRadius: '12px',
+          border: '0.5px solid var(--color-border)',
+          background: '#FDFCFB',
+        }}
+      >
+        <pre
+          className="text-[11.5px] leading-relaxed whitespace-pre-wrap break-all p-3"
+          style={{ color: 'var(--color-text-secondary)', fontFamily: 'var(--font-mono)' }}
+        >
           {lines.join('\n')}
-          {content.split('\n').length > 20 && (
-            <span className="text-text-dim">{'\n'}… {content.split('\n').length - 20} more lines</span>
+          {allLines.length > 20 && (
+            <span style={{ color: 'var(--color-text-dim)' }}>
+              {'\n'}… {allLines.length - 20} more lines
+            </span>
           )}
         </pre>
       </div>

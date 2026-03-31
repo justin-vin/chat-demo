@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #FAF8F5;
+  --color-bg: #FAFAF8;
   --color-surface: #FFFFFF;
-  --color-surface-hover: #F5F3F0;
-  --color-surface-bright: #F0EDE8;
-  --color-accent: #1a1a1a;
-  --color-accent-soft: #E8E5E0;
-  --color-text: #1a1a1a;
-  --color-text-secondary: #6b6560;
-  --color-text-dim: #a8a29e;
-  --color-border: #E8E5E0;
-  --color-border-bright: #D6D0C8;
-  --color-error: #DC3545;
-  --color-success: #34A853;
-  --color-user-bubble: #1a1a1a;
-  --color-user-text: #FAF8F5;
+  --color-surface-hover: #F5F2EE;
+  --color-surface-raised: #EFEBE6;
+  --color-accent: #1C1917;
+  --color-accent-muted: #3D3730;
+  --color-accent-soft: #E5E0DA;
+  --color-text: #1C1917;
+  --color-text-secondary: #57534E;
+  --color-text-dim: #A8A29E;
+  --color-border: #E7E2DB;
+  --color-border-strong: #CEC8BF;
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+  --color-user-bubble: #1C1917;
+  --color-user-text: #FAFAF8;
 
   --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
   --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
@@ -29,7 +30,7 @@
 
 html, body, #root {
   height: 100%;
-  background: #E8E4DF;
+  background: #D4CFC8;
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -38,32 +39,47 @@ html, body, #root {
 
 @layer base {
   @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+    0%, 45% { opacity: 1; }
+    55%, 100% { opacity: 0; }
   }
 
-  @keyframes pulse-glow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.4; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.15); }
   }
 
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(6px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-scale-in {
+    from { opacity: 0; transform: scale(0.96) translateY(4px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes thinking-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D6D0C8;
+  background: #D0CAC2;
   border-radius: 2px;
 }
 
 ::selection {
-  background: rgba(26, 26, 26, 0.08);
+  background: rgba(28, 25, 23, 0.1);
 }
