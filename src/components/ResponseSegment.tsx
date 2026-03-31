@@ -15,34 +15,39 @@ export function ResponseSegmentView({ segment, isActive, isStreaming }: Response
   const hasThinking = segment.thinking.length > 0
   const hasTools = segment.toolCalls.length > 0
   const hasText = segment.text.length > 0
+  const hasTrace = hasThinking || hasTools
 
   return (
     <div className="space-y-1">
-      {/* Thinking pill — inline before text */}
-      {hasThinking && (
-        <div className="flex items-start gap-2">
+      {/* Thinking pill — collapsed by default, expands to show trace + tools */}
+      {hasTrace && (
+        <div>
           <ThinkingPill
-            isActive={isActive && !hasText && !hasTools}
+            isActive={isActive && !hasText}
             durationMs={segment.thinkingDurationMs}
-            thinkingSteps={segment.thinking}
             onToggleTrace={() => setTraceOpen(!traceOpen)}
             traceOpen={traceOpen}
           />
-        </div>
-      )}
 
-      {/* Tool calls */}
-      {hasTools && (
-        <div className="space-y-0.5">
-          {segment.toolCalls.map(tc => (
-            <ToolCallBlock key={tc.id} toolCall={tc} />
-          ))}
+          {/* Expanded trace: thinking steps + tool calls */}
+          {traceOpen && (
+            <div className="mt-2 ml-1 pl-3 border-l border-border space-y-1 animate-[fade-in_0.2s_ease-out]">
+              {segment.thinking.map((step, i) => (
+                <p key={`t-${i}`} className="text-[13px] text-text-dim leading-relaxed italic">
+                  {step.text}
+                </p>
+              ))}
+              {hasTools && segment.toolCalls.map(tc => (
+                <ToolCallBlock key={tc.id} toolCall={tc} />
+              ))}
+            </div>
+          )}
         </div>
       )}
 
       {/* Response text */}
       {hasText && (
-        <div className="text-[15px] text-text leading-relaxed">
+        <div className="text-[15px] text-text leading-[1.65]">
           <StreamingText
             text={segment.text}
             isStreaming={isStreaming}

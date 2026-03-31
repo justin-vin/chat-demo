@@ -8,19 +8,31 @@ interface ChatInputProps {
 
 export function ChatInput({ onSend, disabled, placeholder = 'Message…' }: ChatInputProps) {
   const [value, setValue] = useState('')
-  const inputRef = useRef<HTMLTextAreaElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    if (!disabled && inputRef.current) {
-      inputRef.current.focus()
+    if (!disabled && textareaRef.current) {
+      textareaRef.current.focus()
     }
   }, [disabled])
+
+  // Auto-resize textarea
+  useEffect(() => {
+    const el = textareaRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = Math.min(el.scrollHeight, 140) + 'px'
+  }, [value])
 
   const handleSubmit = () => {
     const trimmed = value.trim()
     if (!trimmed || disabled) return
     onSend(trimmed)
     setValue('')
+    // Reset height
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -31,25 +43,25 @@ export function ChatInput({ onSend, disabled, placeholder = 'Message…' }: Chat
   }
 
   return (
-    <div className="px-4 pb-2">
-      <div className="flex items-end gap-2 bg-surface border border-border rounded-2xl px-4 py-2.5 shadow-[0_1px_3px_rgba(0,0,0,0.04)] focus-within:border-border-bright focus-within:shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-all duration-300">
+    <div className="px-4 pb-2 flex-shrink-0">
+      <div className="flex items-end gap-2 bg-surface border border-border rounded-2xl px-4 py-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)] focus-within:border-border-bright focus-within:shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-all duration-300">
         <textarea
-          ref={inputRef}
+          ref={textareaRef}
           value={value}
           onChange={e => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={disabled}
           rows={1}
-          className="flex-1 bg-transparent text-[15px] text-accent placeholder-text-dim resize-none outline-none leading-relaxed max-h-[120px] py-0.5"
-          style={{ minHeight: '24px' }}
+          className="flex-1 bg-transparent text-[15px] text-accent placeholder:text-text-dim resize-none outline-none leading-relaxed overflow-hidden"
+          style={{ height: '24px', minHeight: '24px', maxHeight: '140px' }}
         />
         <button
           onClick={handleSubmit}
           disabled={!value.trim() || disabled}
           className={`
             flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center
-            transition-all duration-300
+            transition-all duration-300 mb-[1px]
             ${value.trim() && !disabled
               ? 'bg-accent text-white cursor-pointer hover:opacity-80'
               : 'text-text-dim cursor-not-allowed opacity-30'
